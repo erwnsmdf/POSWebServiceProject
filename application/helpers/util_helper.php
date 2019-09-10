@@ -3,10 +3,10 @@
 function checkToken() {
     $ci = &get_instance();
 
-    $token = $ci->input->server("token", true);
+    $token = $ci->input->get_request_header("token");
 
     //cekToken
-    $query = "select token_user, token_expired_user from user where token_user = $token";
+    $query = "select token_user, token_expired_user from user where token_user = '$token' ";
     $user = $ci->db->query($query)->row();
     $hariIni = date("Y-m-d");
 
