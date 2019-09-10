@@ -9,6 +9,9 @@ class Produk extends Restserver\Libraries\REST_Controller {
         parent::__construct();
         $this->load->model("ProdukModel");
         header('Content-Type: application/json');
+        if(checkToken() == false ) {
+            $this->response(["pesan"=>"silahkan login"], 401);
+        }
     }
 
     public function index_get() {
